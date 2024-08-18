@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
+import java.util.Map;
 
 @RequestMapping("api/v1/demo")
 @RestController
@@ -45,5 +46,11 @@ public class DemoController {
             return ResponseEntity.ok("Dynamic Data is even");
         }
         return ResponseEntity.ok("Dynamic Data is odd");
+    }
+
+    @PostMapping(value = "/mapparams",params = {"id", "desc"})
+    public String handleMaps(@RequestParam("id") String id,@RequestParam("desc") String desc, @RequestParam Map<String, String> params) {
+        System.out.println(params);
+        return "Handle Maps with params " + params;
     }
 }
